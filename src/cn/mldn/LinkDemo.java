@@ -1,7 +1,8 @@
 package cn.mldn;
 interface ILink<E> { //设置泛型避免安全隐患
-	public void add(E e) ;
-	public int size() ;
+	public void add(E e) ;	//增加数据
+	public int size() ;	//获取数据的个数
+	public boolean isEmpty() ;	//判断是否为空集合
 
 }
 class LinkImpl<E> implements ILink<E> {
@@ -42,14 +43,18 @@ class LinkImpl<E> implements ILink<E> {
 	public int size() {
 		return this.count ;	//将统计后数据返回
 	}
+	public boolean isEmpty() {
+		//return this.root == null
+		return this.count == 0 ;
+	}
 }
 public class LinkDemo {
 	public static void main(String args[]) {
 		ILink<String> all = new LinkImpl<String> () ;
-		System.out.println("【增加之前】数据个数：" + all.size());
+		System.out.println("【增加之前】数据个数：" + all.size() + "	数据是否为空集合：" + all.isEmpty());
 		all.add("Hello");
 		all.add("World");
 		all.add("Mldn");
-		System.out.println("【增加之后】数据个数：" + all.size());
+		System.out.println("【增加之后】数据个数：" + all.size() + "	数据是否为空集合：" + all.isEmpty());
 	}
 }
